@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environments + Modelos 3D</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!--Creamos la biblioteca de assets-->
+        <a-assets>
+            <!--Creamos un asset item que traera nuestro objeto para ser renderizado en la escena-->
+            <a-asset-item id="dragon" src=assets/models/dragon/alduin-dragon.obj></a-asset-item>
+            <a-asset-item id="mtlDragon" src=assets/models/dragon/alduin-dragon.mtl></a-asset-item>
+        </a-assets>
+
+        <a-entity environment="preset: forest; fog: 0.8; ground: hills; groundYScale: 100 playArea: 5"></a-entity>
+        <!--Importar modelo 3D-->
+        <a-entity obj-model="obj: #dragon; mtl: #mtlDragon" scale="0.01 0.01 0.01" position= "0 2.5 0"></a-entity>
+    </a-scene>
+</body>
+</html>

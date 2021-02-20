@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entidades+Componentes</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <!--Construcción de un carro
+        Componente de tipo Llantas que tiene una propiedad número de llantas.  
+        Componente de tipo Motor que tiene una propiedad cilindraje. 
+        Componente de tipo material que tiene una propiedad color.
+    -->
+    <script>
+        AFRAME.registerComponent('mensaje', {
+            schema:{
+                texto: {type: 'string', default: 'Hola Mundo'}
+            },
+
+            init: function(){
+                console.log(this.data.texto);
+            }
+        }),
+
+        AFRAME.registerComponent('caja', {
+            schema:{
+                ancho: {type: 'number', default: 1},
+                alto: {type: 'number', default: 1},
+                profundidad: {type: 'number', default: 1},
+                color: {type: 'color', default: "red"}
+            },
+
+            init: function(){
+                var data = this.data;
+                var el = this.el;
+
+                //creamos la geometria
+                this.geometry = new THREE.BoxGeometry(data.ancho, data.alto, data.profundidad);
+                //creamos el material
+                this.material = new THREE.MeshStandardMaterial({color: data.color});
+                //creamos la malla
+                this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+                //le ponemos la malla a la entidad
+                el.setObject3D('mesh', this.mesh);
+            }
+        }),
+
+        AFRAME.registerComponent('cilindro',{
+            schema: {
+                radiusTop: {type: 'number', default: 1},
+                radiusBottom: {type: 'number', default: 1},
+                height: {type: 'number', default: 1},
+                radialSegments: {type: 'number', default: 1},
+                heightSegments: {type: 'number', default: 8},
+                openEnded: {type: 'boolean', default: false},
+                color: {type: 'color', default: "green"}
+            },
+
+            init: function(){
+                var data = this.data;
+                var el = this.el;
+                
+                //creamos la geometria
+                this.geometry = new THREE.CylinderBufferGeometry(data.radiusTop, data.radiusBottom, data.height, data.radialSegments, data.heightSegments, data.openEnded);
+                
+                //creamos el material
+                this.material = new THREE.MeshStandardMaterial({color: data.color});
+               
+                //creamos la malla
+                this.mesh = new THREE.Mesh(this.geometry, this.material);
+
+                //Le ponemos la malla a la entidad
+                el.setObject3D('mesh', this.mesh);
+            },
+        });
+    </script>
+
+
+    <a-scene>
+        <a-entity caja="color: blue"></a-entity>
+        <a-entity mensaje="texto: Hola estudiantes de RV 2021 Sábado"></a-entity>
+    </a-scene>
+</body>
+</html>

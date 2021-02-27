@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Particles</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <a-asset-item id="casa" src=assets/models/casa/old-house.obj></a-asset-item>
+            <a-asset-item id="mtlCasa" src=assets/models/casa/old-house.mtl></a-asset-item>
+        </a-assets>
+        <a-entity position="0 2.25 -15" particle-system="preset: rain; texture: ./assets/textures/dolar.png;"></a-entity>
+        <a-sky color="black"></a-sky>
+        <a-entity obj-model="obj: #casa; mtl: #mtlCasa" position= "0 0 -10" static-body="shape: mesh"></a-entity>
+        <a-entity environment="preset: forest; fog: 0; ground: hills; groundYScale: 100 playArea: 5"></a-entity>
+    </a-scene>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-plane rotation="-90 0 0" scale="50 50 1" color="green"></a-plane>
+        <a-box id="cuboRojo" position="0 1 -10" color="red" scale="2 2 2" animation="property: position; from: 0 1 -10; to:  0 1 10; dir: alternate; loop: true"></a-box>
+        <a-box id="cuboNegro" color="black" scale="2 2 2" look-at="#cuboRojo" position="5 1 -5"></a-box>
+    </a-scene>
+</body>
+</html>
